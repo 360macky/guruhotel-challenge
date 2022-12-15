@@ -19,12 +19,17 @@ a {
   box-sizing: border-box;
 }
 
+header {
+  backdrop-filter: blur(1rem) brightness(150%);
+  -webkit-backdrop-filter: blur(1rem) brightness(110%);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
     color: white;
-    background: black;
+    background: #131313;
   }
 }
