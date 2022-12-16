@@ -10,6 +10,16 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Lighthouse
+      id: lighthouseCheck
       uses: foo-software/lighthouse-check-action@master
       with:
         urls: 'https://guruhotel-yelp-app.vercel.app/'
+    - name: Verify Lighthouse Check results
+      uses: foo-software/lighthouse-check-status-action@master
+      with:
+        lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+        minAccessibilityScore: "80"
+        minBestPracticesScore: "80"
+        minPerformanceScore: "80"
+        minProgressiveWebAppScore: "80"
+        minSeoScore: "80"
