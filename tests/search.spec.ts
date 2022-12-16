@@ -1,7 +1,13 @@
 import { test, expect } from '@playwright/test'
 
-test('Check the user flow of a search', async ({ page }) => {
+test('Check the searchbar flow', async ({ page }) => {
   await page.goto('https://guruhotel-yelp-app.vercel.app/')
+
+  // Click on Search button without entering text
+  await page.click('button:text("Search")')
+
+  // Check that input of type search is focused because not text was entered
+  await expect(page.locator('input[type="search"]')).toBeFocused()
 
   // Enter "Pizza" inside the input element with the placeholder "Search for restaurants and more"
   await page.fill(
@@ -9,12 +15,15 @@ test('Check the user flow of a search', async ({ page }) => {
     'Pizza'
   )
 
-  // Enter "New York" inside the input element with the placeholder "City"
-  await page.fill('input[placeholder="City"]', 'New York')
-
-  // Click the button element with the text "Search"
+  // Click the button element with the text "Search" without entering city
   await page.click('button:text("Search")')
 
-  // Expect the page to have a div with the id of "search-results" after the click
-  await expect(page.locator('#search-results')).toBeVisible()
+  // Check that an alert error window is shown
+  page.on('dialog', async dialog => {
+    // Verify message of alert
+    expect(dialog.message()).toContain(`You can't search without location`);
+
+    // Click on alert ok button
+    await dialog.accept();
+  });
 })
