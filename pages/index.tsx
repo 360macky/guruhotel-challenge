@@ -27,7 +27,11 @@ export default function Home() {
   const currentLocation = useSelector(
     (state: appState) => state.currentLocation
   )
-  const [isLocationCustom, setIsLocationCustom] = useState<boolean>(false)
+
+  const isLocationCustom = useSelector(
+    (state: appState) => state.isLocationCustom
+  )
+
   const [isUserLocationTracked, setIsUserLocationTracked] =
     useState<boolean>(false)
   const latestResults = useSelector((state: appState) => state.latestResults)
@@ -81,13 +85,7 @@ export default function Home() {
       })
       const { results, message } = (await searchResponse.json()) as DataResponse
 
-      if (message === 'LOCATION_NOT_FOUND') {
-        if (!errors.includes(message)) {
-          setErrors([...errors, message])
-        }
-      }
-
-      if (message === 'NO_RESULTS') {
+      if (message === 'LOCATION_NOT_FOUND' || message === 'NO_RESULTS') {
         if (!errors.includes(message)) {
           setErrors([...errors, message])
         }
@@ -237,7 +235,7 @@ export default function Home() {
                 }
                 className="w-48 md:w-auto p-3 pl-5 border-b-2 border-l-2 border-r-2 border-purple-dark text-[1.1rem] rounded-br-[2.2rem] focus:ring-purple-lighest focus:border-purple-lighest outline-none bg-white dark:bg-[black] transition"
                 placeholder="City"
-                onFocus={() => setIsLocationCustom(true)}
+                onFocus={() => dispatch(appAction.isLocationCustomUpdate(true))}
               />
             </div>
             {errors.length > 0 && (
