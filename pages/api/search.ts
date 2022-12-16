@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { ApolloClient, InMemoryCache, gql, ApolloError } from '@apollo/client'
-import { Business } from '../types/Business'
+import { Business } from '../../types/Business'
 
 export type DataResponse = {
   results: Business[]

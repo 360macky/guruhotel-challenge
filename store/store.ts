@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { Business } from '../pages/types/Business'
+import { Business } from '../types/Business'
 
 export interface appState {
   results: Business[]
