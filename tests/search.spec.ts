@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test'
 test('Check the user flow of a search', async ({ page }) => {
   await page.goto('https://guruhotel-yelp-app.vercel.app/')
 
-  // Enter "Pizza" inside the input element with the placeholder "Search for restaurants, bars, coffee, and more"
+  // Enter "Pizza" inside the input element with the placeholder "Search for restaurants and more"
   await page.fill(
-    'input[placeholder="Search for restaurants, bars, coffee, and more"]',
+    'input[placeholder="Search for restaurants and more"]',
     'Pizza'
   )
 
