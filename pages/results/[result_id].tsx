@@ -146,7 +146,7 @@ const ResultId = ({ business }: ResultIdProps) => {
                               className="flex gap-x-2 md:items-center"
                               key={index}
                             >
-                              <p className="font-bold text-purple-dark">
+                              <p className="font-bold text-purple-dark dark:text-purple-lighest">
                                 {days[open.day]}
                               </p>
                               <p>
