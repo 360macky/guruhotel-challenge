@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@apollo/client": "^3.7.2",
@@ -27,6 +28,7 @@
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.28.1",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "tailwindcss": "^3.2.4"
