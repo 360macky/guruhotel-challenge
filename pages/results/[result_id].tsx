@@ -102,7 +102,7 @@ const ResultId = ({ business }: ResultIdProps) => {
               </p>
             )}
           </div>
-          <div className="flex flex-col justify-start md:w-[300px] md:gap-y-4">
+          <div className="flex flex-col justify-start md:w-[300px] md:gap-y-4 gap-y-2">
             {business.phone && (
               <a
                 href={`tel:${business.phone}`}
