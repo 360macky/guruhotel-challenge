@@ -4,6 +4,12 @@ export type DataResponse = {
   suggestions: string[]
 }
 
+/**
+ * Autocomplete handler
+ * @description Fetches autocomplete suggestions from Yelp API
+ * @param req NextApiRequest
+ * @param res NextApiResponse<DataResponse>
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<DataResponse>

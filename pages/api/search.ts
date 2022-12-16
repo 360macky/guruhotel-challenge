@@ -7,6 +7,12 @@ export type DataResponse = {
   message: string
 }
 
+/**
+ * Search handler
+ * @description Fetches a businesses search from Yelp API
+ * @param req NextApiRequest
+ * @param res NextApiResponse<DataResponse>
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<DataResponse>
