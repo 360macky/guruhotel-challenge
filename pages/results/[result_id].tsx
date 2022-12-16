@@ -35,7 +35,6 @@ const ResultId = ({ business }: ResultIdProps) => {
   const [hoursHidden, setHoursHidden] = useState<boolean>(true)
 
   useEffect(() => {
-    console.log(business)
     const results_ids = JSON.parse(localStorage.getItem('results_ids') || '[]')
     if (!results_ids.includes(business.id)) {
       results_ids.push(business.id)
