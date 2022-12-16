@@ -82,7 +82,12 @@ export default function Home() {
       const { results, message } = (await searchResponse.json()) as DataResponse
 
       if (message === 'LOCATION_NOT_FOUND') {
-        setIsLocationCustom(true)
+        if (!errors.includes(message)) {
+          setErrors([...errors, message])
+        }
+      }
+
+      if (message === 'NO_RESULTS') {
         if (!errors.includes(message)) {
           setErrors([...errors, message])
         }
@@ -236,7 +241,8 @@ export default function Home() {
                 {errors.map((error, index) => {
                   return (
                     <div key={index} className="text-center">
-                      {error === 'LOCATION_NOT_FOUND' && (
+                      {(error === 'LOCATION_NOT_FOUND' ||
+                        error === 'NO_RESULTS') && (
                         <div className="flex flex-col gap-y-2 items-center">
                           <p className="text-red font-bold dark:text-red-light">
                             We can not found any business near your location!

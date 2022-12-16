@@ -49,7 +49,10 @@ export default async function handler(
       variables: { term, location },
     })
     results = (await data.search.business) as any[]
-    res.status(200).json({ results, message: 'SUCCESS' })
+    res.status(200).json({
+      results,
+      message: results.length === 0 ? 'NO_RESULTS' : 'SUCCESS',
+    })
   } catch (error) {
     if (error instanceof Error) {
       const apolloErrorCode = (error as ApolloError).graphQLErrors[0].extensions

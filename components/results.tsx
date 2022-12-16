@@ -86,7 +86,10 @@ type ResultsProps = {
 
 const Results = ({ resultsItems }: ResultsProps) => {
   return (
-    <div className="p-5 flex flex-col md:w-[760px] md:justify-between md:flex-row md:flex-wrap gap-y-5" id="search-results">
+    <div
+      className="p-5 flex flex-col md:w-[760px] md:justify-between md:flex-row md:flex-wrap gap-y-5"
+      id="search-results"
+    >
       {resultsItems.map((result: any) => (
         <ResultItem
           key={result.id}
