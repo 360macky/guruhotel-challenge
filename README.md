@@ -23,10 +23,29 @@ The development of this project was done using the following technologies:
 - Playwright for E2E testing.
 - GitHub Actions as the CI/CD platform.
 - LocalStorage to persist the user's business reviewed history.
+- Google LightHouse for performance, SEO and accessibility testing.
 
-Complies with the mobile-first approach.
+**Responsive Design**
 
-It has light and dark mode based on the user's system preferences.
+Mobile-first approach.
+
+**Versatile Design**
+
+Light and dark mode are available and based on the user's system preferences. The color palette is updated without the need of reloading the page.
+
+**Over 90% score for SEO, Performance and Accessibility**
+
+It has Google LightHouse integration to ensure that the accessibility, SEO and performance of the application are always at the highest level over 90/100 score. LightHouse is run in the CI/CD pipeline.
+
+**Multibrowser & Automatic E2E Testing**
+
+Playwright is used to test the main features of the application like the start page, the search bar, the search results, and the business details. Tests are run in different browsers (Chrome, Firefox and WebKit). Tests are run in the CI/CD pipeline.
+
+**Documentation**
+
+The code is documented using JSDoc format. From the API documentation to React hooks.
+
+**Deployment**
 
 The project is deployed in [Vercel](https://vercel.com/).
 
