@@ -74,11 +74,11 @@ export default function Home() {
     event.preventDefault()
     if (currentLocation === '') {
       alert("You can't search without a location.")
-      return;
+      return
     }
     if (lastSearch === '') {
       alert("You can't search without a term to search.")
-      return;
+      return
     }
     setErrors([])
     setSearchState('LOADING')

@@ -39,7 +39,7 @@ export const appSlice = createSlice({
     },
     isLocationCustomUpdate: (state: appState, action) => {
       state.isLocationCustom = action.payload
-    }
+    },
   },
 })
 
