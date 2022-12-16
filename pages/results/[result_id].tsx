@@ -6,6 +6,7 @@ import { BusinessDetails } from '../../types/Business'
 import Navbar from '../../components/Navbar'
 import StarFilled from '../../assets/star-filled.svg'
 import StarEmpty from '../../assets/star-empty.svg'
+import Head from 'next/head'
 
 type ResultIdProps = {
   business: BusinessDetails
@@ -47,6 +48,11 @@ const ResultId = ({ business }: ResultIdProps) => {
 
   return (
     <div className="flex flex-col gap-y-4">
+      <Head>
+        <title>{`${business.name} - GuruHotel Yelp App`}</title>
+        <meta name="description" content={`${business.name} at ${business.location.formatted_address}`} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Navbar />
       <div className="dark:bg-purple-darkest bg-almost-white rounded-xl w-11/12 self-center md:w-[760px] mb-4">
         <div>
