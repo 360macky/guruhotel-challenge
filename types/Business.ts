@@ -1,3 +1,8 @@
+/**
+ * Business
+ * Business interface for Yelp API
+ * @see https://docs.developer.yelp.com/reference/v3_business_search
+ */
 export interface Business {
   name: string
   id: string
@@ -13,6 +18,11 @@ export interface Business {
   }
 }
 
+/**
+ * BusinessDetails
+ * BusinessDetails interface for Yelp API. Inherits from Business interface adding detailed information.
+ * @see https://docs.developer.yelp.com/reference/v3_business_search
+ */
 export interface BusinessDetails extends Business {
   price: string
   hours: [
