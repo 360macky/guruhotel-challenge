@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">🧑‍💻 Yelp Next App - GuruHotel Challenge 📍</h1>
+  <h1 align="center">Yelp Next App - GuruHotel Challenge</h1>
 </p>
 
 <p align="center">
@@ -9,6 +9,12 @@
 ![Demo of Project](./.github/images/screenshot.png)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Table of contents
+1. [Core development](#core-development)
+2. [Features](#features)
+3. [Screenshots & Design](#screenshots--design)
+4. [Set up](#set-up)
 
 ## Core development
 
@@ -25,27 +31,27 @@ The development of this project was done using the following technologies:
 - LocalStorage to persist the user's business reviewed history.
 - Google LightHouse for performance, SEO and accessibility testing.
 
-**Responsive Design**
+📱 **Responsive Design**
 
 Mobile-first approach.
 
-**Versatile Design**
+🌗 **Versatile Design**
 
 Light and dark mode are available and based on the user's system preferences. The color palette is updated without the need of reloading the page.
 
-**Over 90% score for SEO, Performance and Accessibility**
+📈 **Over 90% score for SEO, Performance and Accessibility**
 
 It has Google LightHouse integration to ensure that the accessibility, SEO and performance of the application are always at the highest level over 90/100 score. LightHouse is run in the CI/CD pipeline.
 
-**Multibrowser & Automatic E2E Testing**
+🤖 **Multibrowser & Automatic E2E Testing**
 
 Playwright is used to test the main features of the application like the start page, the search bar, the search results, and the business details. Tests are run in different browsers (Chrome, Firefox and WebKit). Tests are run in the CI/CD pipeline.
 
-**Documentation**
+📄 **Documentation**
 
 The code is documented using JSDoc format. From the API documentation to React hooks.
 
-**Deployment**
+🚀 **Deployment**
 
 The project is deployed in [Vercel](https://vercel.com/).
 
@@ -96,7 +102,7 @@ The project is deployed in [Vercel](https://vercel.com/).
 
 ![](./.github/images/mobile.png)
 
-## Getting Started
+## Set up
 
 First, run the development server:
 
