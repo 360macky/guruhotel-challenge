@@ -119,6 +119,10 @@ export default function Home() {
 
   useEffect(() => {
     const checkLocationPermission = async () => {
+      // Check if navigator.permissions is supported.
+      if (!navigator.permissions) {
+        return
+      }
       const permission = await navigator.permissions.query({
         name: 'geolocation',
       })
