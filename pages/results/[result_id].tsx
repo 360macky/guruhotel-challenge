@@ -3,8 +3,9 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import classNames from 'classnames'
 import Head from 'next/head'
 
-import { BusinessDetails } from '../../types/Business'
 import Navbar from '../../components/Navbar'
+import WideActionButton from '../../components/WideActionButton'
+import { BusinessDetails } from '../../types/Business'
 import StarFilled from '../../assets/star-filled.svg'
 import StarEmpty from '../../assets/star-empty.svg'
 
@@ -120,21 +121,19 @@ const ResultId = ({ business }: ResultIdProps) => {
           </div>
           <div className="flex flex-col justify-start md:w-[300px] md:gap-y-4 gap-y-2">
             {business.phone && (
-              <a
+              <WideActionButton
+                text={`Call ${business.display_phone}`}
                 href={`tel:${business.phone}`}
-                className="flex gap-x-2 items-center dark:bg-white rounded-lg px-4 p-2 dark:text-purple-darkest font-bold self-start md:self-stretch active:ring ring-purple-light bg-purple-dark text-white w-full md:w-auto"
-              >
-                <span role={'img'}>☎️</span> Call {business.display_phone}
-              </a>
+                icon="☎️"
+                target="_self"
+              />
             )}
-            <a
+            <WideActionButton
+              text="Open in Google Maps"
               href={`https://www.google.com/maps/search/?api=1&query=${business.coordinates.latitude},${business.coordinates.longitude}`}
-              target={'_blank'}
-              className="flex gap-x-2 items-center dark:bg-white rounded-lg px-4 p-2 dark:text-purple-darkest font-bold self-start md:self-stretch active:ring ring-purple-light bg-purple-dark text-white w-full md:w-auto"
-              rel="noreferrer"
-            >
-              <span role={'img'}>📍</span> Open in Google Maps
-            </a>
+              icon="📍"
+              target="_blank"
+            />
             {isBusinessHourAvailable && (
               <>
                 <h2 className="text-[1.4rem] font-bold pt-4 pb-2 dark:text-purple-so-lighest">
