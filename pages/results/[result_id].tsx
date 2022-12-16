@@ -50,7 +50,10 @@ const ResultId = ({ business }: ResultIdProps) => {
     <div className="flex flex-col gap-y-4">
       <Head>
         <title>{`${business.name} - GuruHotel Yelp App`}</title>
-        <meta name="description" content={`${business.name} at ${business.location.formatted_address}`} />
+        <meta
+          name="description"
+          content={`${business.name} at ${business.location.formatted_address}`}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
