@@ -208,7 +208,7 @@ export default function Home() {
                 />
                 <button
                   type="submit"
-                  className="text-white absolute right-2.5 bottom-2.5 bg-purple-dark hover:bg-purple-darkest focus:ring-4 focus:outline-none focus:ring-purple-light font-medium rounded-full px-4 py-2 dark:hover:bg-purple-darkest dark:focus:ring-blue-800 transition"
+                  className="text-white absolute right-2.5 bottom-2.5 bg-purple-dark hover:bg-purple-darkest focus:ring-4 focus:outline-none focus:ring-purple-light font-medium rounded-full px-4 py-2 dark:hover:bg-purple-darkest transition"
                   ref={searchButtonRef}
                 >
                   Search
