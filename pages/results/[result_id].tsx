@@ -67,16 +67,18 @@ const ResultId = ({ business }: ResultIdProps) => {
       </Head>
       <Navbar />
       <div className="dark:bg-purple-darkest bg-almost-white rounded-xl w-11/12 self-center md:w-[760px] mb-4">
-        <div>
+        <div className="relative">
           <img
             src={business.photos[0]}
             alt={business.name}
             className="rounded-xl object-cover w-full h-48 md:h-80"
           />
+          <h1 className="text-4xl md:text-6xl font-bold absolute bottom-[0.4rem] left-[0.4rem] md:bottom-[0.6rem] md:left-[0.6rem] business-name text-white p-2 md:p-0">
+            {business.name}
+          </h1>
         </div>
         <div className="p-6 py-8 flex flex-col gap-y-4 md:flex-row md:items-start md:justify-between">
           <div className="flex flex-col md:gap-y-2">
-            <h1 className="text-3xl font-bold">{business.name}</h1>
             {isBusinessHourAvailable ? (
               <p
                 className={classNames('text-xl font-bold', {

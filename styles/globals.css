@@ -24,6 +24,10 @@ header {
   -webkit-backdrop-filter: blur(1rem) brightness(110%);
 }
 
+.business-name {
+  text-shadow: 0px 0px 0.6rem #000000;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
