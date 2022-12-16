@@ -72,6 +72,14 @@ export default function Home() {
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (currentLocation === '') {
+      alert("You can't search without a location.")
+      return;
+    }
+    if (lastSearch === '') {
+      alert("You can't search without a term to search.")
+      return;
+    }
     setErrors([])
     setSearchState('LOADING')
     setCurrentSuggestions([])
