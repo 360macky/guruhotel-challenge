@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('Check visible elements in a result page', async ({ page }) => {
   // Go to the result page of "Burger King" in "New York"
   await page.goto(
-    'https://yelp-next-app.vercel.app/results/QDRMxE9anxw6hvva4r-ZTw'
+    'https://guruhotel-yelp-app.vercel.app/results/QDRMxE9anxw6hvva4r-ZTw'
   )
 
   // Expect the page to have a h1 title with the text "Burger King"

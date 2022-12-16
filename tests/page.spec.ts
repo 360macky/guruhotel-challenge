@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('Check basic elements of the index page', async ({ page }) => {
-  await page.goto('https://yelp-next-app.vercel.app/')
+  await page.goto('https://guruhotel-yelp-app.vercel.app/')
 
   // Expect a title to contain the text "Yelp Next App - GuruHotel Challenge"
   await expect(page).toHaveTitle('Yelp Next App - GuruHotel Challenge')
