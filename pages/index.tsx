@@ -4,6 +4,7 @@ import { auditTime, Subject } from 'rxjs'
 import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../components/Navbar'
 import classNames from 'classnames'
+import { Business } from '../types/Business'
 
 import { DataResponse } from './api/search'
 import { appAction } from '../store/store'
@@ -18,7 +19,7 @@ const MILISECONS_TO_COMPLETE_SEARCH = 1000
 
 export default function Home() {
   const dispatch = useDispatch()
-  const [resultsItems, setResultsItems] = useState<any[]>([])
+  const [resultsItems, setResultsItems] = useState<Business[]>([])
   const [searchState, setSearchState] = useState<SEARCH_STATES>('INITIAL')
   const [errors, setErrors] = useState<string[]>([])
   const [currentSuggestions, setCurrentSuggestions] = useState<string[]>([])
