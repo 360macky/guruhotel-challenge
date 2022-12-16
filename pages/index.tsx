@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 import { auditTime, Subject } from 'rxjs'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,8 +25,9 @@ export default function Home() {
   const lastSearch = useSelector((state: appState) => state.lastSearch)
   const currentLocation = useSelector(
     (state: appState) => state.currentLocation
-  )
+    )
   const [isLocationCustom, setIsLocationCustom] = useState<boolean>(false)
+  const [isLocationTracked, setIsLocationTracked] = useState<boolean>(false)
   const latestResults = useSelector((state: appState) => state.latestResults)
   const locationRef = React.useRef<HTMLInputElement>(null)
   const searchButtonRef = React.useRef<HTMLButtonElement>(null)
@@ -59,6 +60,7 @@ export default function Home() {
     event.preventDefault()
     setErrors([])
     setSearchState('LOADING')
+    setCurrentSuggestions([])
     try {
       const searchResponse = await fetch('/api/search', {
         method: 'POST',
@@ -88,7 +90,7 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
+  const trackLocation = useCallback(() => {
     if (currentLocation === '' && !isLocationCustom) {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords
@@ -97,10 +99,10 @@ export default function Home() {
         )
         const data = await response.json()
         dispatch(appAction.currentLocationUpdate(`${data.city}`))
+        setIsLocationTracked(true)
       })
     }
-    return () => {}
-  }, [dispatch, currentLocation, isLocationCustom])
+  }, [currentLocation, dispatch, isLocationCustom])
 
   useEffect(() => {
     if (lastSearch !== '') {
@@ -120,10 +122,10 @@ export default function Home() {
 
       <main>
         <Navbar />
-        <section className="px-2 py-4 flex flex-col md:justify-center md:items-center">
+        <section className="px-2 py-4 flex flex-col md:justify-center md:items-center gap-y-4">
           <div
             className={classNames('flex flex-col transition-all duration-300', {
-              'mt-[10rem]': searchState !== 'DONE',
+              'mt-[10rem]': searchState === 'INITIAL',
             })}
           >
             <form onSubmit={handleSearch}>
@@ -197,7 +199,7 @@ export default function Home() {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                   dispatch(appAction.currentLocationUpdate(event.target.value))
                 }
-                className="w-32 md:w-auto p-3 pl-5 border-b-2 border-l-2 border-r-2 border-purple-dark text-[1.1rem] rounded-br-[2.2rem] focus:ring-purple-lighest focus:border-purple-lighest outline-none bg-white dark:bg-[black] transition"
+                className="w-48 md:w-auto p-3 pl-5 border-b-2 border-l-2 border-r-2 border-purple-dark text-[1.1rem] rounded-br-[2.2rem] focus:ring-purple-lighest focus:border-purple-lighest outline-none bg-white dark:bg-[black] transition"
                 placeholder="City"
                 onFocus={() => setIsLocationCustom(true)}
               />
@@ -238,6 +240,19 @@ export default function Home() {
               </p>
             )}
           </div>
+
+          <div className={classNames("flex flex-col justify-center items-center gap-y-3 md:w-[500px] text-center transition", {
+            "hidden": isLocationTracked || searchState !== 'INITIAL'
+          })}>
+            <h1 className="text-2xl">🌍 Where are you now?</h1>
+            <p>
+              <span role={"img"}>☝️</span> Allow access to your location if you want to use the city from where you are in the search. Or just write your city in <b><span role={"img"}>📍</span> Location</b>.
+            </p>
+            <button onClick={() => {
+              trackLocation()
+            }} className="text-white bg-purple-dark hover:bg-purple-darkest focus:ring-4 focus:outline-none focus:ring-purple-light font-medium rounded-full px-4 py-2 dark:hover:bg-purple-darkest dark:focus:ring-blue-800 transition">Allow location access</button>
+          </div>
+
           <Results resultsItems={resultsItems} />
         </section>
       </main>
