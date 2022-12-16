@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { auditTime, Subject } from 'rxjs'
 import Head from 'next/head'
-import Navbar from '../components/Navbar'
-import { DataResponse } from './api/search'
-
+import { auditTime, Subject } from 'rxjs'
 import { useDispatch, useSelector } from 'react-redux'
+import Navbar from '../components/Navbar'
+import classNames from 'classnames'
+
+import { DataResponse } from './api/search'
 import { appAction } from '../store/store'
 import { appState } from '../store/store'
 
 import Results from '../components/results'
 
-type SEARCH_STATES = 'INITIAL' | 'LOADING' | 'DONE' | 'ERROR'
+type SEARCH_STATES = 'INITIAL' | 'LOADING' | 'DONE'
 
 const onInputChange$ = new Subject<string>()
 const MILISECONS_TO_COMPLETE_SEARCH = 1000
@@ -79,7 +80,9 @@ export default function Home() {
       dispatch(appAction.latestResultsUpdate(results))
       setSearchState('DONE')
     } catch (error) {
-      setSearchState('ERROR')
+      if (error instanceof Error) {
+        setErrors([...errors, error.message])
+      }
     } finally {
       setSearchState('DONE')
     }
@@ -118,7 +121,11 @@ export default function Home() {
       <main>
         <Navbar />
         <section className="px-2 py-4 flex flex-col md:justify-center md:items-center">
-          <div className="flex flex-col">
+          <div
+            className={classNames('flex flex-col transition-all duration-300', {
+              'mt-[10rem]': searchState !== 'DONE',
+            })}
+          >
             <form onSubmit={handleSearch}>
               <label className="mb-2 font-medium text-gray-900 sr-only dark:text-white">
                 Search
@@ -150,7 +157,7 @@ export default function Home() {
                   }}
                   value={lastSearch}
                   className="block w-full p-4 pl-10 border-purple-dark border-2 transition-all rounded-t-[2.2rem] bg-gray-50 focus:ring-purple-lighest focus:border-purple-lighest dark:text-white dark:focus:ring-purple-lighest dark:focus:border-purple-lighest outline-none focus:shadow-custom dark:bg-[black]"
-                  placeholder="Start searching business!"
+                  placeholder="Search for restaurants, bars, coffee, and more"
                   required
                   autoComplete="off"
                 />
@@ -169,7 +176,6 @@ export default function Home() {
                       className="w-full hover:text-purple-dark p-2 pl-10 hover:bg-almost-white dark:hover:bg-[black] transition cursor-pointer dark:hover:text-purple-lighest"
                       onClick={() => {
                         dispatch(appAction.lastSearchUpdate(suggestion))
-                        searchButtonRef.current?.click()
                         setCurrentSuggestions([])
                       }}
                       key={index}
@@ -196,9 +202,9 @@ export default function Home() {
                 onFocus={() => setIsLocationCustom(true)}
               />
             </div>
-            <div className="p-4 md:w-[760px] rounded-full">
-              {errors.length > 0 &&
-                errors.map((error, index) => {
+            {errors.length > 0 && (
+              <div className={'p-4 md:w-[760px] rounded-full'}>
+                {errors.map((error, index) => {
                   return (
                     <div key={index} className="text-center">
                       {error === 'LOCATION_NOT_FOUND' && (
@@ -221,7 +227,8 @@ export default function Home() {
                     </div>
                   )
                 })}
-            </div>
+              </div>
+            )}
           </div>
 
           <div>
