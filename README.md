@@ -69,10 +69,13 @@ The project is deployed in [Vercel](https://vercel.com/).
 
 ## Screenshots & Design
 
-
-
-
 ![Demo of Project](./.github/images/search-results.png)
+
+![](./.github/images/modes.png)
+
+![](./.github/images/lighthouse.png)
+
+![](./.github/images/mobile.png)
 
 ## Getting Started
 
