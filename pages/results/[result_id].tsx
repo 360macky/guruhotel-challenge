@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import classNames from 'classnames'
 
 import { BusinessDetails } from '../../types/Business'
-import Navbar from '../components/Navbar'
+import Navbar from '../../components/Navbar'
 import StarFilled from '../../assets/star-filled.svg'
 import StarEmpty from '../../assets/star-empty.svg'
 

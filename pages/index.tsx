@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { auditTime, Subject } from 'rxjs'
 import Head from 'next/head'
-import Navbar from './components/Navbar'
+import Navbar from '../components/Navbar'
 import { DataResponse } from './api/search'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { appAction } from '../store/store'
 import { appState } from '../store/store'
 
-import Results from './components/results'
+import Results from '../components/results'
 
 type SEARCH_STATES = 'INITIAL' | 'LOADING' | 'DONE' | 'ERROR'
 

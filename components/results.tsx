@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 
-import StarFilled from '../../assets/star-filled.svg'
-import StarEmpty from '../../assets/star-empty.svg'
-import { Business } from '../../types/Business'
+import StarFilled from 'assets/star-filled.svg'
+import StarEmpty from 'assets/star-empty.svg'
+import { Business } from '../types/Business'
 
 type ResultItemProps = {
   id: string
