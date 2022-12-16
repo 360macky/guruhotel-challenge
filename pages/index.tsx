@@ -12,6 +12,7 @@ import { appState } from '../store/store'
 import Results from '../components/results'
 
 type SEARCH_STATES = 'INITIAL' | 'LOADING' | 'DONE'
+type LOCATION_STATES = 'GRANTED' | 'PROMPT' | 'DENIED' | 'UNKNOWN'
 
 const onInputChange$ = new Subject<string>()
 const MILISECONS_TO_COMPLETE_SEARCH = 1000
@@ -25,12 +26,21 @@ export default function Home() {
   const lastSearch = useSelector((state: appState) => state.lastSearch)
   const currentLocation = useSelector(
     (state: appState) => state.currentLocation
-    )
+  )
   const [isLocationCustom, setIsLocationCustom] = useState<boolean>(false)
-  const [isLocationTracked, setIsLocationTracked] = useState<boolean>(false)
+  const [isUserLocationTracked, setIsUserLocationTracked] =
+    useState<boolean>(false)
   const latestResults = useSelector((state: appState) => state.latestResults)
   const locationRef = React.useRef<HTMLInputElement>(null)
   const searchButtonRef = React.useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (latestResults.length > 0) {
+      setSearchState('DONE')
+    }
+
+    return () => {}
+  }, [latestResults])
 
   useEffect(() => {
     const inputChangeSubscription = onInputChange$
@@ -91,18 +101,35 @@ export default function Home() {
   }
 
   const trackLocation = useCallback(() => {
-    if (currentLocation === '' && !isLocationCustom) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const { latitude, longitude } = position.coords
-        const response = await fetch(
-          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-        )
-        const data = await response.json()
-        dispatch(appAction.currentLocationUpdate(`${data.city}`))
-        setIsLocationTracked(true)
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords
+      const response = await fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+      )
+      const data = await response.json()
+      dispatch(appAction.currentLocationUpdate(`${data.city}`))
+      setIsUserLocationTracked(true)
+    })
+  }, [dispatch])
+
+  useEffect(() => {
+    const checkLocationPermission = async () => {
+      const permission = await navigator.permissions.query({
+        name: 'geolocation',
       })
+      if (permission.state === 'granted') {
+        setIsUserLocationTracked(true)
+        if (!isLocationCustom) {
+          trackLocation()
+        }
+      } else if (permission.state === 'denied') {
+        setIsUserLocationTracked(false)
+      }
     }
-  }, [currentLocation, dispatch, isLocationCustom])
+
+    checkLocationPermission()
+    return () => {}
+  }, [isLocationCustom, trackLocation])
 
   useEffect(() => {
     if (lastSearch !== '') {
@@ -240,17 +267,32 @@ export default function Home() {
               </p>
             )}
           </div>
-
-          <div className={classNames("flex flex-col justify-center items-center gap-y-3 md:w-[500px] text-center transition", {
-            "hidden": isLocationTracked || searchState !== 'INITIAL'
-          })}>
+          <div
+            className={classNames(
+              'flex flex-col justify-center items-center gap-y-3 md:w-[500px] text-center transition',
+              {
+                hidden: isUserLocationTracked,
+              }
+            )}
+          >
             <h1 className="text-2xl">🌍 Where are you now?</h1>
             <p>
-              <span role={"img"}>☝️</span> Allow access to your location if you want to use the city from where you are in the search. Or just write your city in <b><span role={"img"}>📍</span> Location</b>.
+              <span role={'img'}>☝️</span> Allow access to your location if you
+              want to use the city from where you are in the search. Or just
+              write your city in{' '}
+              <b>
+                <span role={'img'}>📍</span> Location
+              </b>
+              .
             </p>
-            <button onClick={() => {
-              trackLocation()
-            }} className="text-white bg-purple-dark hover:bg-purple-darkest focus:ring-4 focus:outline-none focus:ring-purple-light font-medium rounded-full px-4 py-2 dark:hover:bg-purple-darkest dark:focus:ring-blue-800 transition">Allow location access</button>
+            <button
+              onClick={() => {
+                trackLocation()
+              }}
+              className="text-white bg-purple-dark hover:bg-purple-darkest focus:ring-4 focus:outline-none focus:ring-purple-light font-medium rounded-full px-4 py-2 dark:hover:bg-purple-darkest dark:focus:ring-blue-800 transition"
+            >
+              Allow location access
+            </button>
           </div>
 
           <Results resultsItems={resultsItems} />
