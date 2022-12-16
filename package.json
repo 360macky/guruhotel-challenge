@@ -17,6 +17,7 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "classnames": "^2.3.2",
+    "dotenv": "^16.0.3",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
     "graphql": "^16.6.0",
