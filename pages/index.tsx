@@ -12,7 +12,6 @@ import { appState } from '../store/store'
 import Results from '../components/results'
 
 type SEARCH_STATES = 'INITIAL' | 'LOADING' | 'DONE'
-type LOCATION_STATES = 'GRANTED' | 'PROMPT' | 'DENIED' | 'UNKNOWN'
 
 const onInputChange$ = new Subject<string>()
 const MILISECONS_TO_COMPLETE_SEARCH = 1000

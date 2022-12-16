@@ -26,6 +26,8 @@ The development of this project was done using the following technologies:
 
 Complies with the mobile-first approach.
 
+It has light and dark mode based on the user's system preferences.
+
 The project is deployed in [Vercel](https://vercel.com/).
 
 ## Features
@@ -33,6 +35,7 @@ The project is deployed in [Vercel](https://vercel.com/).
 ### Basic features
 
 - ✅ The user must be able to see a list with the first 10 results of his search, these results must each have:
+
   - ✅ Image of the business.
   - ✅ Business name.
   - ✅ Location.
@@ -52,11 +55,9 @@ The project is deployed in [Vercel](https://vercel.com/).
   - ✅ Open or permanently closed.
   - ✅ List with the first 5 reviews.
 
-
 **Note 1:** Some properties are not available in the GraphQL response. e.g. `reviews` so I decided to replace the space with the message "This business does not have reviews currently".
 
 **Note 2:** For stetic purposes, I choose not display the contact telephone number in the list, by replacing it with the "Call" button. So the user can call the business directly from the list. But the contact telephone number is still available in the details view.
-
 
 ### Bonus features
 
@@ -64,8 +65,14 @@ The project is deployed in [Vercel](https://vercel.com/).
 - ✅ Search using the user's current location ([geolocation API](https://developer.mozilla.org/es/docs/Web/API/Geolocation_API)) 🌎
 - ✅ A search bar with auto-complete, that is, as the user writes, it shows the list of possible results.
 
-
 **Note 3:** The geolocalization feature is activated by the user using the button "Allow location access" instead of automatically. I did this because it can be disruptive and interrupt the user's workflow. And [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) recommends not to use the geolocation API without the user's consent.
+
+## Screenshots & Design
+
+
+
+
+![Demo of Project](./.github/images/search-results.png)
 
 ## Getting Started
 
