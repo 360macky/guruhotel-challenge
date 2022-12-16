@@ -19,11 +19,11 @@ test('Check the searchbar flow', async ({ page }) => {
   await page.click('button:text("Search")')
 
   // Check that an alert error window is shown
-  page.on('dialog', async dialog => {
+  page.on('dialog', async (dialog) => {
     // Verify message of alert
-    expect(dialog.message()).toContain(`You can't search without location`);
+    expect(dialog.message()).toContain(`You can't search without location`)
 
     // Click on alert ok button
-    await dialog.accept();
-  });
+    await dialog.accept()
+  })
 })
