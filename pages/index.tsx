@@ -47,6 +47,9 @@ export default function Home() {
     return () => {}
   }, [latestResults])
 
+  /**
+   * Handle autocomplete suggestions
+   */
   useEffect(() => {
     const inputChangeSubscription = onInputChange$
       .pipe(auditTime(MILISECONS_TO_COMPLETE_SEARCH))
@@ -71,6 +74,11 @@ export default function Home() {
     }
   }, [])
 
+  /**
+   * Handle search form submit
+   * @param event Form event
+   * @returns
+   */
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (currentLocation === '') {
@@ -112,6 +120,9 @@ export default function Home() {
     }
   }
 
+  /**
+   * Track user location and update currentLocation state
+   */
   const trackLocation = useCallback(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords
@@ -147,6 +158,9 @@ export default function Home() {
     return () => {}
   }, [isLocationCustom, trackLocation])
 
+  /**
+   * Set latest results items if there is a last search
+   */
   useEffect(() => {
     if (lastSearch !== '') {
       setResultsItems(latestResults)

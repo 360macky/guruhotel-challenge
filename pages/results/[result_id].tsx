@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import classNames from 'classnames'
+import Head from 'next/head'
 
 import { BusinessDetails } from '../../types/Business'
 import Navbar from '../../components/Navbar'
 import StarFilled from '../../assets/star-filled.svg'
 import StarEmpty from '../../assets/star-empty.svg'
-import Head from 'next/head'
 
 type ResultIdProps = {
   business: BusinessDetails
@@ -23,7 +23,12 @@ const days = [
   'Saturday',
 ]
 
-const formatHour = (unformattedHour: string) => {
+/**
+ * Formats hour to 12 hour format
+ * @param unformattedHour 24 hour format
+ * @returns formatted hour
+ */
+const formatHour = (unformattedHour: string): string => {
   const hour = unformattedHour.slice(0, 2)
   const minutes = unformattedHour.slice(2, 4)
   const ampm = parseInt(hour) >= 12 ? 'pm' : 'am'
@@ -35,6 +40,9 @@ const formatHour = (unformattedHour: string) => {
 const ResultId = ({ business }: ResultIdProps) => {
   const [hoursHidden, setHoursHidden] = useState<boolean>(true)
 
+  /**
+   * Stores the result id in local storage
+   */
   useEffect(() => {
     const results_ids = JSON.parse(localStorage.getItem('results_ids') || '[]')
     if (!results_ids.includes(business.id)) {
