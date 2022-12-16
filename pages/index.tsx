@@ -165,7 +165,7 @@ export default function Home() {
             })}
           >
             <form onSubmit={handleSearch}>
-              <label className="mb-2 font-medium text-gray-900 sr-only dark:text-white">
+              <label className="mb-2 font-medium sr-only dark:text-white">
                 Search
               </label>
               <div className="relative md:w-[760px]">
@@ -195,7 +195,7 @@ export default function Home() {
                   }}
                   value={lastSearch}
                   className="block w-full p-4 pl-10 border-purple-dark border-2 transition-all rounded-t-[2.2rem] bg-gray-50 focus:ring-purple-lighest focus:border-purple-lighest dark:text-white dark:focus:ring-purple-lighest dark:focus:border-purple-lighest outline-none focus:shadow-custom dark:bg-[black]"
-                  placeholder="Search for restaurants, bars, coffee, and more"
+                  placeholder="Search for restaurants and more"
                   required
                   autoComplete="off"
                 />
