@@ -105,7 +105,7 @@ const ResultId = ({ business }: ResultIdProps) => {
             {business.phone && (
               <a
                 href={`tel:${business.phone}`}
-                className="flex gap-x-2 items-center dark:bg-white rounded-lg px-4 p-2 dark:text-purple-darkest font-bold self-start md:self-stretch active:ring ring-purple-light bg-purple-dark text-white"
+                className="flex gap-x-2 items-center dark:bg-white rounded-lg px-4 p-2 dark:text-purple-darkest font-bold self-start md:self-stretch active:ring ring-purple-light bg-purple-dark text-white w-full md:w-auto"
               >
                 <span role={'img'}>☎️</span> Call {business.display_phone}
               </a>
@@ -113,7 +113,7 @@ const ResultId = ({ business }: ResultIdProps) => {
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${business.coordinates.latitude},${business.coordinates.longitude}`}
               target={'_blank'}
-              className="flex gap-x-2 items-center dark:bg-white rounded-lg px-4 p-2 dark:text-purple-darkest font-bold self-start md:self-stretch active:ring ring-purple-light bg-purple-dark text-white"
+              className="flex gap-x-2 items-center dark:bg-white rounded-lg px-4 p-2 dark:text-purple-darkest font-bold self-start md:self-stretch active:ring ring-purple-light bg-purple-dark text-white w-full md:w-auto"
               rel="noreferrer"
             >
               <span role={'img'}>📍</span> Open in Google Maps
