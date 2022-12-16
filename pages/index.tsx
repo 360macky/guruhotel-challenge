@@ -11,6 +11,7 @@ import { appAction } from '../store/store'
 import { appState } from '../store/store'
 
 import Results from '../components/results'
+import RoundedFullButton from '../components/RoundedFullButton'
 
 type SEARCH_STATES = 'INITIAL' | 'LOADING' | 'DONE'
 
@@ -301,14 +302,10 @@ export default function Home() {
               </b>
               .
             </p>
-            <button
-              onClick={() => {
-                trackLocation()
-              }}
-              className="text-white bg-purple-dark hover:bg-purple-darkest focus:ring-4 focus:outline-none focus:ring-purple-light font-medium rounded-full px-4 py-2 dark:hover:bg-purple-darkest dark:focus:ring-blue-800 transition"
-            >
-              Allow location access
-            </button>
+            <RoundedFullButton
+              text="Allow location access"
+              onClick={() => trackLocation()}
+            />
           </div>
 
           <Results resultsItems={resultsItems} />
