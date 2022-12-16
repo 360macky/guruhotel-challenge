@@ -80,7 +80,7 @@ The project is deployed in [Vercel](https://vercel.com/).
   - ✅ Open or permanently closed.
   - ✅ List with the first 5 reviews.
 
-**Note 1:** Some properties are not available in the GraphQL response. e.g. `reviews` so I decided to replace the space with the message "This business does not have reviews currently".
+**Note 1:** In some business, some properties are not available in the GraphQL response. e.g. `reviews` so I decided to replace the space with the message "This business does not have reviews currently".
 
 **Note 2:** For stetic purposes, I choose not display the contact telephone number in the list, by replacing it with the "Call" button. So the user can call the business directly from the list. But the contact telephone number is still available in the details view.
 
