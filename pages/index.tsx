@@ -291,7 +291,7 @@ export default function Home() {
             )}
           </div>
 
-          <div>
+          <div className="text-center">
             {searchState === 'LOADING' && (
               <p className="dark:text-purple-lighest text-purple-dark text-[1.5rem] font-bold">
                 <span role={'img'}>🔍</span> Loading...
